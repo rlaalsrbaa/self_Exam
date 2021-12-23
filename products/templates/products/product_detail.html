@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{%block content%}
+
+<h1>상품 상세</h1>
+<ul>
+    <li>
+        번호 : {{product_detail.id}}
+    </li>
+    <li>
+        이름 : {{product_detail.name}}
+    </li>
+    <li>
+        가격 : {{product_detail.sale_price}}원
+    </li>
+    <li>
+        등록 : {{product_detail.reg_date }}
+    </li>
+    <li>
+        수정 : {{product_detail.update_date }}
+    </li>
+    <li>
+        마켓 : {{product_detail.market.name}}
+    </li>
+</ul>
+<h1>옵션</h1>
+<ul>
+    {% for product_real in product_reals %}
+    <li>
+        {{product_real.option_1_type}} : {{product_real.option_1_display_name}}
+        / {{product_real.option_2_type}} : {{product_real.option_2_display_name}}
+    </li>
+    {%endfor%}
+</ul>
+<form method="POST" action="{% url 'products:create_question' product_detail.id%}">
+    {% csrf_token %}
+    <div>
+        <span>내용</span>
+        <textarea name="body" rows="10"></textarea>
+    </div>
+    <div>
+        <span>질문작성</span>
+        <input type="submit" value="작성">
+    </div>
+</form>
+{%endblock%}
