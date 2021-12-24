@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'common.css' %}">
 </head>
 <body>
-
+<a href="{% url 'products:list'%}" class="btn btn-light">메인화면</a>
 {% if messages %}
 {% for message in messages %}
 <div class="alert alert-{{ message.tags }}">

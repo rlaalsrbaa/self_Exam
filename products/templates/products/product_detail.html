@@ -31,15 +31,20 @@
     </li>
     {%endfor%}
 </ul>
-<form method="POST" action="{% url 'products:create_question' product_detail.id%}">
-    {% csrf_token %}
-    <div>
-        <span>내용</span>
-        <textarea name="body" rows="10"></textarea>
-    </div>
-    <div>
-        <span>질문작성</span>
-        <input type="submit" value="작성">
-    </div>
-</form>
+<h1>질문 목록!</h1>
+
+{% if questions %}
+{% for question in questions %}
+<div>
+    <h5>{{ question.body }}</h5>
+    작성일자 : {{ question.reg_date }}<br>
+    수정일자 : {{question.update_date}}<br>
+    <a href="{% url 'products:question_modify' product_detail.id question.id %}" class="btn btn-light">수정</a>
+    <a href="{% url 'products:question_delete' product_detail.id question.id %}" class="btn btn-light">삭제</a>
+</div>
+{% endfor %}
+{%else%}
+<h4 style="color:magenta;">질문이 없습니다.</h4>
+{% endif %}
+<a href="{% url 'products:question_create' product_detail.id %}" class="btn btn-info">질문작성</a>
 {%endblock%}
