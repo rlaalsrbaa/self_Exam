@@ -17,8 +17,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from products import views
+import products.views
 
 urlpatterns = [
+    path('', views.products_list, name='list'),
     path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
     path('admin/', admin.site.urls),
