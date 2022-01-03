@@ -1,7 +1,7 @@
 {% extends "accounts/layout.html" %}
 {% block content %}
 <div class="container my-3">
-    <form method="post" class="post-form" action="{% url 'accounts:login' %}">
+    <form method="post" class="post-form" action="{% url 'accounts:signin' %}">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         {% include "form_errors.html" %}
@@ -15,7 +15,9 @@
             <input type="password" class="form-control" name="password" id="password"
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
+        <hr>
         <button type="submit" class="btn btn-primary">로그인</button>
+        <a href="{% url 'accounts:kakao_signin' %}" class="btn btn-primary">카카오로 로그인</a>
     </form>
 </div>
 {% endblock %}

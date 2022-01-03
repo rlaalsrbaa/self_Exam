@@ -36,7 +36,7 @@ def products_detail(request: HttpRequest, product_id):
         'questions': questions,
     })
 
-@login_required(login_url='accounts:login')
+@login_required(login_url='accounts:signin')
 def question_create(request: HttpRequest, product_id):
     product_detail = get_object_or_404(Product, pk=product_id)
     product_reals = product_detail.product_reals.all()
@@ -60,7 +60,7 @@ def question_create(request: HttpRequest, product_id):
                 'questions': questions,
             })
     else:
-        return redirect('accounts:login')
+        return redirect('accounts:signin')
 
 def question_delete(request: HttpRequest, product_id,question_id):
     question = Question.objects.get(id=question_id)
