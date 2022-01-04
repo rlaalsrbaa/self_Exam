@@ -31,6 +31,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=100, verbose_name='마켓대표이메일')),
                 ('master', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.user')),
             ],
+
         ),
-        migrations.RunPython(gen_master)
+        migrations.RunPython(gen_master),
     ]
